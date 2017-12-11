@@ -2,4 +2,7 @@ using TickTock
 using Base.Test
 
 # write your own tests here
-@test 1 == 2
+tick()
+sleep(1)
+@test tok() > 1.0
+ 
