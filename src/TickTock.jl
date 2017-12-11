@@ -3,6 +3,12 @@ This module provides `tick()`, `tock()`, and `tok()` functions.
 
 They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and
 similar software.
+
+Don't use these for timing code execution! Julia provides much better facilities for
+measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't
+time Julia code running in global scope!)
+
+This code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
 """
 
 module TickTock
