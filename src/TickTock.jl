@@ -23,7 +23,7 @@ Start counting.
 function tick()
     t0 = time_ns()
     task_local_storage(:TIMERS, (t0, get(task_local_storage(), :TIMERS, ())))
-    return t0
+    info("Started timer at $(now()).")
 end
 
 """
@@ -39,19 +39,20 @@ function tok()
     end
     t0 = timers[1]::UInt64
     task_local_storage(:TIMERS, timers[2])
-    (t1-t0)/1e9 # seconds
+    return (t1-t0)/1e9 # seconds
 end
 
 """
     tock()
 
-Print the elapsed time, in suitably canonical form, since the previous `tick()`,
+Print the elapsed time, in canonical form, since the previous `tick()`,
 and then stop counting.
 """
 function tock()
     t = tok()
-    canondc = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(floor(t))))
-    println(canondc)
+    canondc = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(floor(t)), Dates.Millisecond(floor((t-floor(t)) * 1000))))
+    info("Time taken: $t")
+    info("            $canondc")
 end
 
 end # module

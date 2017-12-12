@@ -11,16 +11,29 @@ time Julia code running in global scope!)
 
 This code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
 
+The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
+
 ## Example
 
 ```julia
 julia-0.6> using TickTock
 
 julia-0.6> tick()
-0x0000146b7dcc5c23
+INFO: Started timer at 2017-12-12T09:33:00.363.
 
 julia-0.6> tock()
-2 seconds
+INFO: Time taken: 149.427977832
+INFO:             2 minutes, 29 seconds, 427 milliseconds
+```
+
+To return the elapsed time in seconds, use `tok()`:
+
+```julia
+julia-0.6> tick()
+INFO: Started timer at 2017-12-12T09:17:45.504.
+
+julia-0.6> tok()
+287.841546621
 ```
 
 [![Build Status](https://travis-ci.org/cormullion/TickTock.jl.svg?branch=master)](https://travis-ci.org/cormullion/TickTock.jl)
