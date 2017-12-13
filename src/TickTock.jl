@@ -13,7 +13,7 @@ This code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functi
 
 module TickTock
 
-export tick, tock, tok
+export tick, tock, tok, peek, lap
 
 """
     tick()
@@ -23,36 +23,63 @@ Start counting.
 function tick()
     t0 = time_ns()
     task_local_storage(:TIMERS, (t0, get(task_local_storage(), :TIMERS, ())))
-    info("Started timer at $(now()).")
+    info("Started timer: $(now()).")
 end
 
 """
-    tok()
+    peek()
 
-Return the time since the previous `tick()`, in seconds, and then stop counting.
+Return the seconds counted by the current timer, without stopping it.
 """
-function tok()
+function peek()
     t1 = time_ns()
     timers = get(task_local_storage(), :TIMERS, ())
     if timers === ()
         error("You must first use `tick()`.")
     end
     t0 = timers[1]::UInt64
+    return (t1 - t0)/1e9
+end
+
+"""
+    tok()
+
+Return the seconds since the previous `tick()` then stop counting.
+"""
+function tok()
+    timers = get(task_local_storage(), :TIMERS, ())
+    if timers === ()
+        error("You must first use `tick()`.")
+    end
+    t = peek()
     task_local_storage(:TIMERS, timers[2])
-    return (t1-t0)/1e9 # seconds
+    return t
 end
 
 """
     tock()
 
 Print the elapsed time, in canonical form, since the previous `tick()`,
-and then stop counting.
+then stop counting.
 """
 function tock()
     t = tok()
     canondc = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(floor(t)), Dates.Millisecond(floor((t-floor(t)) * 1000))))
-    info("Time taken: $t")
-    info("            $canondc")
+    info("$(t)ms: ($canondc)")
 end
+
+"""
+    lap()
+
+Print the current elapsed time, in canonical form, since the previous `tick()`,
+and continue counting.
+"""
+function lap()
+    t = peek()
+    canondc = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(floor(t)), Dates.Millisecond(floor((t-floor(t)) * 1000))))
+    info("$(t)ms: ($canondc)")
+end
+
+
 
 end # module
