@@ -10,8 +10,8 @@ time Julia code running in global scope!) The [TimerOutputs.jl](https://github.c
 ## Functions
 
 - `tick()` start counting
-- `tock()` stop counting show total elapsed time
-- `tok()`  stop counting return seconds
+- `tock()` stop counting, show total elapsed time
+- `tok()`  stop counting, return seconds
 - `peek()` continue counting, return elapsed seconds
 - `lap()`  continue counting, show total elapsed time
 
@@ -31,6 +31,7 @@ INFO: 55.052638936 ms: 55 seconds, 52 milliseconds
 
 - see whether your cup of tea's brewed for the right length of time:
 
+```
 julia-0.6> tick()
 INFO: Started timer: 2017-12-13T22:34:03.78.
 julia-0.6> lap()
