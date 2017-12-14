@@ -15,6 +15,10 @@ module TickTock
 
 export tick, tock, tok, peek, lap
 
+if VERSION > v"0.7.0-"
+    using Dates # for now() :(
+end
+
 """
     tick()
 
@@ -64,8 +68,10 @@ then stop counting.
 """
 function tock()
     t = tok()
-    canondc = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(floor(t)), Dates.Millisecond(floor((t-floor(t)) * 1000))))
-    info("$(t)ms: ($canondc)")
+    canondc = Dates.canonicalize(
+        Dates.CompoundPeriod(Dates.Second(floor(t)),
+        Dates.Millisecond(floor( (t - floor(t)) * 1000))))
+    info("$(t)s: ($canondc)")
 end
 
 """
@@ -76,10 +82,10 @@ and continue counting.
 """
 function lap()
     t = peek()
-    canondc = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(floor(t)), Dates.Millisecond(floor((t-floor(t)) * 1000))))
-    info("$(t)ms: ($canondc)")
+    canondc = Dates.canonicalize(
+        Dates.CompoundPeriod(Dates.Second(floor(t)),
+        Dates.Millisecond(floor( (t - floor(t)) * 1000))))
+    info("$(t)s: ($canondc)")
 end
-
-
 
 end # module

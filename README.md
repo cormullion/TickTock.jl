@@ -29,7 +29,7 @@ julia-0.6> tock()
 INFO: 55.052638936 ms: 55 seconds, 52 milliseconds
 ```
 
-- see whether your cup of tea's brewed for the right length of time:
+- see how long your cup of tea's been brewing:
 
 ```
 julia-0.6> tick()
@@ -56,12 +56,10 @@ You should not:
 
 - measure performance of Julia code
 
+- do benchmarking of Julia code
+
 ## Acknowledgements
 
-This code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
+Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
 
-[![Build Status](https://travis-ci.org/cormullion/TickTock.jl.svg?branch=master)](https://travis-ci.org/cormullion/TickTock.jl)
-
-[![Coverage Status](https://coveralls.io/repos/cormullion/TickTock.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/cormullion/TickTock.jl?branch=master)
-
-[![codecov.io](http://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master)](http://codecov.io/github/cormullion/TickTock.jl?branch=master)
+[![Travis](https://travis-ci.org/cormullion/TickTock.jl.svg?branch=master)](https://travis-ci.org/cormullion/TickTock.jl) [![Appveyor](https://ci.appveyor.com/api/projects/status/j4w1iwued4ojsfm6/branch/master?svg=true)](https://ci.appveyor.com/project/cormullion/ticktock-jl/branch/master) [![Coverage Status](https://coveralls.io/repos/cormullion/TickTock.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/cormullion/TickTock.jl?branch=master) [![codecov.io](http://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master)](http://codecov.io/github/cormullion/TickTock.jl?branch=master)
