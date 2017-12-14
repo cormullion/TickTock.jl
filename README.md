@@ -1,5 +1,7 @@
 # TickTock
 
+![tick tock](images/ticktock.gif)
+
 This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and
 similar software. There are also `lap()` and `peek()` functions that reveal the state of the current timer without stopping it.
 
