@@ -1,5 +1,9 @@
 using TickTock
-using Base.Test
+if VERSION > v"0.7.0-"
+    using Test
+else
+    using Base.Test
+end
 
 tick()
 sleep(1)
