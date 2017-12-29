@@ -51,7 +51,14 @@ julia-0.6> tok()
 287.841546621
 ```
 
-You should not:
+- see how long your computer has been running for:
+
+```
+julia-0.6> lap()
+INFO: 1.302200135485876e6s: (2 weeks, 1 day, 1 hour, 43 minutes, 20 seconds, 135 milliseconds)
+```
+
+You should *not* use this package to:
 
 - measure performance of Julia code
 
@@ -59,6 +66,7 @@ You should not:
 
 ## Acknowledgements
 
-Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
+Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions
+(in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
 
 [![Travis](https://travis-ci.org/cormullion/TickTock.jl.svg?branch=master)](https://travis-ci.org/cormullion/TickTock.jl) [![Appveyor](https://ci.appveyor.com/api/projects/status/j4w1iwued4ojsfm6/branch/master?svg=true)](https://ci.appveyor.com/project/cormullion/ticktock-jl/branch/master) [![Coverage Status](https://coveralls.io/repos/github/cormullion/TickTock.jl/badge.svg?branch=master)](https://coveralls.io/github/cormullion/TickTock.jl?branch=master) [![codecov.io](http://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master)](http://codecov.io/github/cormullion/TickTock.jl?branch=master)
