@@ -1,14 +1,16 @@
 """
 This module provides `tick()`, `tock()`, and `tok()` functions.
 
-They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and
-similar software.
+They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB
+and similar software.
 
 Don't use these for timing code execution! Julia provides much better facilities for
-measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't
+measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as
+[BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't
 time Julia code running in global scope!)
 
-This code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
+This code used to live in Julia Base as the `tic()`, `toc()`, and `toq()` functions
+(in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
 """
 
 module TickTock
@@ -22,7 +24,12 @@ end
 """
     tick()
 
-Start counting.
+Start counting. The other functions are:
+
+- `tock()` stop counting, show total elapsed time in canonical form
+- `tok()`  stop counting, return seconds
+- `peek()` continue counting, return elapsed seconds
+- `lap()`  continue counting, show total elapsed time in canonical form
 """
 function tick()
     t0 = time_ns()
@@ -33,7 +40,7 @@ end
 """
     peek()
 
-Return the seconds counted by the current timer, without stopping it.
+Return the current elapsed seconds counted by the current timer, without stopping it.
 """
 function peek()
     t1 = time_ns()

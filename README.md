@@ -2,12 +2,9 @@
 
 ![tick tock](images/ticktock.gif)
 
-This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and
-similar software. There are also `lap()` and `peek()` functions that reveal the state of the current timer without stopping it.
+This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and similar software. There are also `lap()` and `peek()` functions that reveal the state of the current timer without stopping it.
 
-**Don't use these for timing code execution!** Julia provides much better facilities for
-measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't
-time Julia code running in global scope!) The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
+**Don't use these for timing code execution!** Julia provides much better facilities for measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't time Julia code running in global scope!) The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
 
 ## Functions
 
@@ -17,7 +14,7 @@ time Julia code running in global scope!) The [TimerOutputs.jl](https://github.c
 - `peek()` continue counting, return elapsed seconds
 - `lap()`  continue counting, show total elapsed time
 
-## Suggestions for use  
+## Suggestions for use
 
 You can:
 
