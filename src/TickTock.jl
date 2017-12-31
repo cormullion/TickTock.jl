@@ -34,7 +34,7 @@ Start counting. The other functions are:
 function tick()
     t0 = time_ns()
     task_local_storage(:TIMERS, (t0, get(task_local_storage(), :TIMERS, ())))
-    info("Started timer: $(now()).")
+    println("Started timer: $(now()).")
 end
 
 """
@@ -78,7 +78,7 @@ function tock()
     canondc = Dates.canonicalize(
         Dates.CompoundPeriod(Dates.Second(floor(t)),
         Dates.Millisecond(floor( (t - floor(t)) * 1000))))
-    info("$(t)s: ($canondc)")
+    println("$(t)s: ($canondc)")
 end
 
 """
@@ -92,7 +92,7 @@ function lap()
     canondc = Dates.canonicalize(
         Dates.CompoundPeriod(Dates.Second(floor(t)),
         Dates.Millisecond(floor( (t - floor(t)) * 1000))))
-    info("$(t)s: ($canondc)")
+    println("$(t)s: ($canondc)")
 end
 
 end # module
