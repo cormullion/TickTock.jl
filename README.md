@@ -23,39 +23,41 @@ You can:
 ```
 julia-0.6> using TickTock
 julia-0.6> tick()
-INFO: Started timer: 2017-12-13T22:30:59.632.
+Started timer: 2017-12-13T22:30:59.632.
 julia-0.6> tock()
-INFO: 55.052638936 ms: 55 seconds, 52 milliseconds
+55.052638936 ms: 55 seconds, 52 milliseconds
 ```
 
 - see how long your cup of tea's been brewing:
 
 ```
 julia-0.6> tick()
-INFO: Started timer: 2017-12-13T22:34:03.78.
+Started timer: 2017-12-13T22:34:03.78.
 julia-0.6> lap()
-INFO: 72.625839832 ms: 1 minute, 12 seconds, 625 milliseconds
+72.625839832 ms: 1 minute, 12 seconds, 625 milliseconds
 julia-0.6> lap()
-INFO: 266.053953749 ms: 4 minutes, 26 seconds, 53 milliseconds
+266.053953749 ms: 4 minutes, 26 seconds, 53 milliseconds
 julia-0.6> lap()
-INFO: 285.314459174 ms: 4 minutes, 45 seconds, 314 milliseconds
+285.314459174 ms: 4 minutes, 45 seconds, 314 milliseconds
 ```
 
 - see how many seconds you held your breath for:
 
 ```
 julia-0.6> tick()
-INFO: Started timer at 2017-12-12T09:17:45.504.
+Started timer at 2017-12-12T09:17:45.504.
 
 julia-0.6> tok()
 287.841546621
 ```
 
-- see how long your computer has been running for:
+- see how long your computer (and Julia session) has been running for:
 
 ```
+julia-0.6> tick()
+...
 julia-0.6> lap()
-INFO: 1.302200135485876e6s: (2 weeks, 1 day, 1 hour, 43 minutes, 20 seconds, 135 milliseconds)
+1.302200135485876e6s: (2 weeks, 1 day, 1 hour, 43 minutes, 20 seconds, 135 milliseconds)
 ```
 
 You should *not* use this package to:
@@ -64,7 +66,7 @@ You should *not* use this package to:
 
 - do benchmarking of Julia code
 
-## Acknowledgements
+## History
 
 Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions
 (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
