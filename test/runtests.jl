@@ -13,7 +13,7 @@ sleep(1)
 @test typeof(peek()) == Float64
 
 if VERSION > v"0.7.0-"
-    @test typeof(lap()) == Nothing
+    @test sprint(showcompact, lap()) == "nothing"
 else
     @test typeof(lap()) == Void
 end
@@ -24,7 +24,7 @@ end
 tick()
 
 if VERSION > v"0.7.0-"
-    @test typeof(tock()) == Nothing
+    @test sprint(showcompact, tock()) == "nothing"
 else
     @test typeof(tock()) == Void
 end
