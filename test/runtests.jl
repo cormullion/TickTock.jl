@@ -1,4 +1,5 @@
 using TickTock
+
 if VERSION > v"0.7.0-"
     using Test
 else
@@ -6,12 +7,27 @@ else
 end
 
 tick()
+
 sleep(1)
+
 @test typeof(peek()) == Float64
-@test typeof(lap()) == Void
+
+if VERSION > v"0.7.0-"
+    @test typeof(lap()) == Nothing
+else
+    @test typeof(lap()) == Void
+end
+
+
 @test tok() > 1.0
+
 tick()
-@test typeof(tock()) == Void
+
+if VERSION > v"0.7.0-"
+    @test typeof(tock()) == Nothing
+else
+    @test typeof(tock()) == Void
+end
 
 # with no current timer, these should error
 

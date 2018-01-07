@@ -2,6 +2,13 @@
 
 ![tick tock](images/ticktock.gif)
 
+
+| **PackageEvaluator**                                                                            | **Build Status**                                                                                |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+|[![][pkg-0.6-img]][pkg-0.6-url] [![][pkg-0.7-img]][pkg-0.7-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
+
+
+
 This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and similar software. There are also `lap()` and `peek()` functions that reveal the state of the current timer without stopping it.
 
 **Don't use these for timing code execution!** Julia provides much better facilities for measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't time Julia code running in global scope!) The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
@@ -71,4 +78,17 @@ You should *not* use this package to:
 Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions
 (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
 
-[![Travis](https://travis-ci.org/cormullion/TickTock.jl.svg?branch=master)](https://travis-ci.org/cormullion/TickTock.jl) [![Appveyor](https://ci.appveyor.com/api/projects/status/j4w1iwued4ojsfm6/branch/master?svg=true)](https://ci.appveyor.com/project/cormullion/ticktock-jl/branch/master) [![Coverage Status](https://coveralls.io/repos/github/cormullion/TickTock.jl/badge.svg?branch=master)](https://coveralls.io/github/cormullion/TickTock.jl?branch=master) [![codecov.io](http://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master)](http://codecov.io/github/cormullion/TickTock.jl?branch=master)
+
+[travis-img]: https://travis-ci.org/cormullion/TickTock.jl.svg?branch=master
+[travis-url]: https://travis-ci.org/cormullion/TickTock.jl
+
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/j4w1iwued4ojsfm6?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/JuliaDocs/ticktock-jl
+
+[codecov-img]: https://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master
+[codecov-url]: https://codecov.io/github/cormullion/TickTock.jl
+
+[pkg-0.6-img]: http://pkg.julialang.org/badges/TickTock_0.6.svg
+[pkg-0.6-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.6
+[pkg-0.7-img]: http://pkg.julialang.org/badges/TickTock_0.7.svg
+[pkg-0.7-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.7
