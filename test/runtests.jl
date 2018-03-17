@@ -71,3 +71,4 @@ end
 @test_throws ErrorException peektimer()
 @test_throws ErrorException laptimer()
 @test_throws ErrorException tok()
+@test_throws ErrorException TickTock.showtimes()
