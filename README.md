@@ -7,17 +7,17 @@
 |:---:|:---:|
 |[![][pkg-0.6-img]][pkg-0.6-url] [![][pkg-0.7-img]][pkg-0.7-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
 
-This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and similar software. There are also `laptimer()` and `peektimer()` functions that reveal the state of the current timers without stopping them.
+This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in other technical software. There are also `laptimer()` and `peektimer()` functions that show you current timing activity without stopping any active timers.
 
 **Don't use these for timing code execution!** Julia provides much better facilities for measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't time Julia code running in global scope!) The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
 
 ## Functions
 
-- `tick()` start timing
-- `tock()` stop timing, show total elapsed time
-- `tok()` stop timing, return elapsed seconds
-- `peektimer() ` continue timing, return elapsed seconds
-- `laptimer()  ` continue timing, show total elapsed time
+- `tick()` start a timer
+- `tock()` stop a timer, show total elapsed time
+- `tok()` stop a timer, return elapsed seconds
+- `peektimer() ` continue timing, return elapsed seconds of most recent timer
+- `laptimer()  ` continue timing, show total elapsed time of active timers
 
 ## Suggestions for use
 
