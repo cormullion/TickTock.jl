@@ -7,16 +7,16 @@
 |:---:|:---:|
 |[![][pkg-0.6-img]][pkg-0.6-url] [![][pkg-0.7-img]][pkg-0.7-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
 
-This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and similar software. There are also `laptime()` and `peektime()` functions that reveal the state of the current timers without stopping them.
+This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB and similar software. There are also `laptimer()` and `peektimer()` functions that reveal the state of the current timers without stopping them.
 
 **Don't use these for timing code execution!** Julia provides much better facilities for measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't time Julia code running in global scope!) The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
 
 ## Functions
 
-- `tick()     ` start timing
-- `tock()     ` stop timing, show total elapsed time
-- `tok()      ` stop timing, return elapsed seconds
-- `peektime() ` continue timing, return elapsed seconds
+- `tick()` start timing
+- `tock()` stop timing, show total elapsed time
+- `tok()` stop timing, return elapsed seconds
+- `peektimer() ` continue timing, return elapsed seconds
 - `laptimer()  ` continue timing, show total elapsed time
 
 ## Suggestions for use
@@ -92,8 +92,8 @@ Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()
 [travis-url]: https://travis-ci.org/cormullion/TickTock.jl
 
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/j4w1iwued4ojsfm6?svg=true
-[appveyor-url]: https://ci.appveyor.com/project/JuliaDocs/ticktock-jl
-
+[appveyor-url]: https://ci.appveyor.com/project/cormullion/ticktock-jl/branch/master
+  
 [codecov-img]: https://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master
 [codecov-url]: https://codecov.io/github/cormullion/TickTock.jl
 
@@ -101,3 +101,4 @@ Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()
 [pkg-0.6-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.6
 [pkg-0.7-img]: http://pkg.julialang.org/badges/TickTock_0.7.svg
 [pkg-0.7-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.7
+
