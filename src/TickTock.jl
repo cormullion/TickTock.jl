@@ -100,9 +100,6 @@ end
 function showtimes(;canonical=true)
     t1 = time_ns()
     timers = gettimers()
-    if timers === ()
-        error("Use `tick()` to start a timer.")
-    end
     timernumber = length(timers)
     for t0 in timers
         tnow = (t1 - t0)/1e9
