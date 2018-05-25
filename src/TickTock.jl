@@ -1,34 +1,32 @@
 """
 This module provides `tick()`, `tock()`, and `tok()` functions.
 
-They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in MATLAB
-and similar software.
+- `tick()`       ` start a new timer and start counting
+- `tock()`       ` stop counting, show total elapsed time in canonical form
+- `tok()`        ` stop counting, show and return total elapsed time in seconds
+- `peektimer()   ` continue counting, show and return elapsed seconds so far
+- `laptimer()    ` continue counting, show elapsed time so far in canonical form
 
 Don't use these for timing code execution! Julia provides much better facilities for
 measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as
-[BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't
-time Julia code running in global scope!)
-
-This code used to live in Julia Base as the `tic()`, `toc()`, and `toq()` functions
-(in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
+[BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl).
 """
 module TickTock
 
 export tick, tock, tok, peektimer, laptimer
 
 if VERSION > v"0.7.0-"
-    using Dates # for now() :(
+    using Dates # for now()
 end
 
 """
     tick()
 
-Start counting. The other functions are:
+Start a timer.
 
-- `tock()`       ` stop counting, show total elapsed time in canonical form
-- `tok()`        ` stop counting, return seconds
-- `peektimer()   ` continue counting, return elapsed seconds
-- `laptimer()    ` continue counting, show total elapsed time in canonical form
+Other functions: `tock()` (stop counting and show canonical), `tok()` (stop
+counting and return seconds), `peektimer()` (continue counting, return elapsed
+seconds), and `laptimer()` (continue counting, show canonical)
 """
 function tick()
     t0 = time_ns()
@@ -60,7 +58,7 @@ end
 """
     peektimer()
 
-Return the current elapsed seconds counted by the most recent timer, without stopping it.
+Return the elapsed seconds counted by the most recent timer, without stopping it.
 """
 function peektimer()
     t1 = time_ns()
@@ -75,7 +73,7 @@ end
 """
     tok()
 
-Return the current elapsed seconds counted by the most recent timer, then stop counting.
+Return the elapsed seconds counted by the most recent timer, then stop counting.
 """
 function tok()
     timers = get(task_local_storage(), :TIMERS, ())
@@ -112,8 +110,7 @@ end
 """
 laptimer()
 
-Print the current elapsed time, in canonical form, since the previous `tick()`,
-and continue counting.
+Print the elapsed time, in canonical form, of the most recent timer, and continue counting.
 """
 laptimer() = showtimes(canonical=true)
 

@@ -2,22 +2,23 @@
 
 ![tick tock](images/ticktock.gif)
 
-
 | **PackageEvaluator** | **Build Status**  |
 |:---:|:---:|
 |[![][pkg-0.6-img]][pkg-0.6-url] [![][pkg-0.7-img]][pkg-0.7-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
 
-This module provides `tick()`, `tock()`, and `tok()` functions. They're similar to the `tic()`, `toc()`, and `toq()` functions that you might find in other technical software. There are also `laptimer()` and `peektimer()` functions that show you current timing activity without stopping any active timers.
+This module provides simple timer functions:
 
-**Don't use these for timing code execution!** Julia provides much better facilities for measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't time Julia code running in global scope!) The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
+- `tick()`  start a timer
+- `tock()`  stop a timer, show total elapsed time
+- `tok()`   stop a timer, return elapsed seconds
+- `laptimer()` continue timing, show total elapsed time of active timers
+- `peektimer()` continue timing, return elapsed seconds of most recent timer
 
-## Functions
+`laptimer()` and `peektimer()` functions show your current timing activity without stopping any active timers.
 
-- `tick()` start a timer
-- `tock()` stop a timer, show total elapsed time
-- `tok()` stop a timer, return elapsed seconds
-- `peektimer() ` continue timing, return elapsed seconds of most recent timer
-- `laptimer()  ` continue timing, show total elapsed time of active timers
+**Don't use these for timing code execution!**
+
+Julia provides much better facilities for measuring performance, ranging from the `@time` and `@elapsed` macros to packages such as [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl). (And remember, don't time Julia code running in global scope!) The [TimerOutputs.jl](https://github.com/KristofferC/TimerOutputs.jl) package provides tools for timing different sections of a program.
 
 ## Suggestions for use
 
@@ -93,7 +94,7 @@ Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()
 
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/j4w1iwued4ojsfm6?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/cormullion/ticktock-jl/branch/master
-  
+
 [codecov-img]: https://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master
 [codecov-url]: https://codecov.io/github/cormullion/TickTock.jl
 
@@ -101,4 +102,3 @@ Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()
 [pkg-0.6-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.6
 [pkg-0.7-img]: http://pkg.julialang.org/badges/TickTock_0.7.svg
 [pkg-0.7-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.7
-
