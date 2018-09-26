@@ -164,7 +164,7 @@ TODO alarms don't appear in timer lists...
 function alarm(dt::DateTime;
         action = () -> @info("TickTock: alarm: time's up"))
     p = Dates.Period(dt - now())
-    secs = round(p, Dates.Second).value
+    secs = round(p, digits=Dates.Second).value
     m, s = divrem(secs, 60)
     h, m = divrem(m, 60)
     @info "TickTock: setting alarm for $h hours, $m minutes, $s seconds"
