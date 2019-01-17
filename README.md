@@ -78,6 +78,23 @@ julia-0.7> laptimer()
 1                327.074715234s: 5 minutes, 27 seconds, 74 milliseconds
 ```
 
+- make an alarmclock function
+```julia
+function alarmclock(hours, minutes, seconds)
+    tick()
+    while true
+        sleep(5)
+        if peektimer() > hours * 60 * 60 + minutes * 60 + seconds
+            println("time's up")
+            tock()
+            break
+        end
+    end
+end
+
+alarmclock(0, 30, 0)
+```
+
 You should *not* use this package to:
 
 - measure performance of Julia code
