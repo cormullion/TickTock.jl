@@ -9,7 +9,7 @@ sleep(1)
 @async alarm(now() + Dates.Minute(0) + Dates.Second(10),
     action=() ->
         begin
-            println("test alarm set at $(now()) for 10 seconds has fired")
+            println("test alarm has fired")
         end)
 
 alarmmessage() = println("This is an alarm. Do not be alarmed.")

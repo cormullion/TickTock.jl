@@ -116,21 +116,25 @@ laptimer() = showtimes(canonical=true)
     alarm(hours, minutes, seconds;
         action = () -> @info("TickTock: time's up"))
 
-Run an alarm, with the option of providing a anonymous function that executes
+Set an alarm, with the option of providing a anonymous function that executes
 when alarm fires.
 
 ```
 using Dates
 
 @async alarm(0, 5, 0, action = ()-> println("TickTock.jl: 5 minutes is up!"))
+
+@async alarm(0, 0, 5, action = () -> run(`say "your alarm is ringing, sir"`), alarmname="tea's up") # uses macOS speech
 ```
 """
 function alarm(hours, minutes, seconds;
-        action=() -> @info("TickTock: alarm: time's up"))
+        action=() -> @info("TickTock: alarm"),
+        alarmname="TickTock alarm")
     tick()
     while true
         sleep(5)
         if peektimer() > hours * 60 * 60 + minutes * 60 + seconds
+            @info alarmname
             action()
             tock()
             break
@@ -152,7 +156,7 @@ using Dates
 
 dt = now() + Dates.Minute(1)
 
-@async alarm(dt, action=()-> println("TickTock.jl: Ready!"))
+@async alarm(dt, action = () -> println("TickTock.jl: Ready!"))
 ```
 
 ```
@@ -162,13 +166,14 @@ dt = now() + Dates.Minute(1)
 TODO alarms don't appear in timer lists...
 """
 function alarm(dt::DateTime;
-        action = () -> @info("TickTock: alarm: time's up"))
+        action = () -> @info("TickTock: alarm"),
+        alarmname = "TickTock alarm")
     p = Dates.Period(dt - now())
     secs = round(p, Dates.Second).value
     m, s = divrem(secs, 60)
     h, m = divrem(m, 60)
-    @info "TickTock: setting alarm for $h hours, $m minutes, $s seconds"
-    alarm(h, m, s, action=action)
+    @info "TickTock: \"$(alarmname)\" alarm for $h hours, $m minutes, $s seconds"
+    alarm(h, m, s, action=action, alarmname=alarmname)
 end
 
 """
@@ -176,7 +181,7 @@ end
 
 TODO this is macOS only...
 """
-function alarmnotify(subtitle="time's up")
+function alarmnotify(subtitle="TickTock alarm")
     !Sys.isapple() && exit()
     command = """
     display notification with title "TickTock.jl" subtitle \"$(subtitle)\" sound name "frog"
