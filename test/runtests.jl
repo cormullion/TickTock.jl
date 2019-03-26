@@ -1,11 +1,4 @@
-if VERSION > v"0.7.0-"
-    using Pkg
-    using Test
-else
-    using Base.Test
-end
-
-using TickTock
+using Pkg, Test, Dates, TickTock
 
 tick()
 
@@ -13,21 +6,23 @@ sleep(1)
 
 @test typeof(peektimer()) == Float64
 
-if VERSION > v"0.7.0-"
-    @test sprint(show, laptimer(), context=:compact => true) == "nothing"
-else
-    @test typeof(laptimer()) == Void
-end
+@async alarm(now() + Dates.Minute(0) + Dates.Second(10),
+    action=() ->
+        begin
+            println("test alarm set at $(now()) for 10 seconds has fired")
+        end)
+
+alarmmessage() = println("This is an alarm. Do not be alarmed.")
+
+@async alarm(now() + Dates.Second(5), action=alarmmessage
+ 
+@test sprint(show, laptimer(), context=:compact => true) == "nothing"
 
 @test tok() > 1.0
 
 tick()
 
-if VERSION > v"0.7.0-"
-    @test sprint(show, tock(), context=:compact => true) == "nothing"
-else
-    @test typeof(tock()) == Void
-end
+@test sprint(show, tock(), context=:compact => true) == "nothing"
 
 println("Make 10 timers")
 
@@ -54,9 +49,7 @@ for i in 1:10
 end
 
 println("Check that the most recent timer is more than 1 second")
-
-println(peektimer())
-
+println("  ", peektimer())
 @test peektimer() > 1.0
 
 println("Finish 10 timers and show canonical")
