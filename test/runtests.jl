@@ -14,8 +14,8 @@ sleep(1)
 
 alarmmessage() = println("This is an alarm. Do not be alarmed.")
 
-@async alarm(now() + Dates.Second(5), action=alarmmessage
- 
+@async alarm(now() + Dates.Second(5), action=alarmmessage)
+
 @test sprint(show, laptimer(), context=:compact => true) == "nothing"
 
 @test tok() > 1.0
