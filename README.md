@@ -2,7 +2,10 @@
 
 ![tick tock](images/ticktock.gif)
 
-![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url]
+| **Documentation**                       | **Build Status**                          | **Code Coverage**               |
+|:---------------------------------------:|:-----------------------------------------:|:-------------------------------:|
+| [![][docs-stable-img]][docs-stable-url] | [![Build Status][travis-img]][travis-url] | [![][codecov-img]][codecov-url] |
+| [![][docs-latest-img]][docs-latest-url] | [![Build Status][appvey-img]][appvey-url] |                                 |
 
 This module provides simple timer functions:
 
@@ -102,16 +105,13 @@ You should *not* use this package to:
 
 Some of this code used to live in Julia Base in the `tic()`, `toc()`, and `toq()` functions (in base/util.jl). They were deprecated in GitHub issue [17046](https://github.com/JuliaLang/julia/issues/17046).
 
+[pkgeval-link]: http://pkg.julialang.org/?pkg=TickTock
+
 [travis-img]: https://travis-ci.org/cormullion/TickTock.jl.svg?branch=master
 [travis-url]: https://travis-ci.org/cormullion/TickTock.jl
 
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/j4w1iwued4ojsfm6?svg=true
-[appveyor-url]: https://ci.appveyor.com/project/cormullion/ticktock-jl/branch/master
+[appvey-img]: https://ci.appveyor.com/api/projects/status/jfa9e54lv92rqd3m?svg=true
+[appvey-url]: https://ci.appveyor.com/project/cormullion/ticktock-jl/branch/master
 
-[codecov-img]: https://codecov.io/github/cormullion/TickTock.jl/coverage.svg?branch=master
-[codecov-url]: https://codecov.io/github/cormullion/TickTock.jl
-
-[pkg-0.6-img]: http://pkg.julialang.org/badges/TickTock_0.6.svg
-[pkg-0.6-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.6
-[pkg-0.7-img]: http://pkg.julialang.org/badges/TickTock_0.7.svg
-[pkg-0.7-url]: http://pkg.julialang.org/?pkg=TickTock&ver=0.7
+[codecov-img]: https://codecov.io/gh/cormullion/TickTock.jl/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cormullion/TickTock.jl
