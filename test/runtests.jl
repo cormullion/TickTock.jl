@@ -1,4 +1,4 @@
-using Pkg, Test, Dates, TickTock
+using Test, Dates, TickTock
 
 tick()
 

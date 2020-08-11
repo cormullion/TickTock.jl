@@ -2,9 +2,7 @@
 
 ![tick tock](images/ticktock.gif)
 
-| **PackageEvaluator** | **Build Status**  |
-|:---:|:---:|
-|[![][pkg-0.6-img]][pkg-0.6-url] [![][pkg-0.7-img]][pkg-0.7-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
+![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url]
 
 This module provides simple timer functions:
 
