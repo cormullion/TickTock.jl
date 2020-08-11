@@ -1,7 +1,7 @@
 name = "TickTock"
 uuid = "9ff05d80-102d-5586-aa04-3a8bd1a90d20"
 authors = ["cormullion <cormullion@mac.com>"]
-version = "1.0.0"
+version = "1.1.0"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"

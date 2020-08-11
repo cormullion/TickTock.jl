@@ -2,11 +2,8 @@
 
 ![tick tock](images/ticktock.gif)
 
-| **Documentation**                       | **Build Status**                          | **Code Coverage**               |
-|:---------------------------------------:|:-----------------------------------------:|:-------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] | [![Build Status][travis-img]][travis-url] | [![][codecov-img]][codecov-url] |
-| [![][docs-latest-img]][docs-latest-url] | [![Build Status][appvey-img]][appvey-url] |                                 |
-
+[![Build Status][travis-img]][travis-url] | [![][codecov-img]][codecov-url] | [![Build Status][appvey-img]][appvey-url]
+ 
 This module provides simple timer functions:
 
 - `tick()`  start a timer
