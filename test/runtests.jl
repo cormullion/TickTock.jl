@@ -16,6 +16,8 @@ alarmmessage() = println("This is an alarm. Do not be alarmed.")
 
 @async alarm(now() + Dates.Second(5), action=alarmmessage)
 
+alarmlist()
+
 @test sprint(show, laptimer(), context=:compact => true) == "nothing"
 
 @test tok() > 1.0
@@ -43,10 +45,11 @@ println("Print all the timers")
 
 laptimer()
 
-
 for i in 1:10
     peektimer()
 end
+
+@show peektimers()
 
 println("Check that the most recent timer is more than 1 second")
 println("  ", peektimer())
@@ -58,10 +61,4 @@ for i in 1:10
     tock()
 end
 
-# now, with no current timers, these should all error
-
-@test_throws ErrorException TickTock.gettimers()
-@test_throws ErrorException peektimer()
-@test_throws ErrorException laptimer()
 @test_throws ErrorException tok()
-@test_throws ErrorException TickTock.showtimes()
