@@ -14,7 +14,8 @@ This module provides simple timer functions:
 - `tok()`   stop a timer, return elapsed seconds
 - `laptimer()` continue timing, show total elapsed time of active timers
 - `peektimer()` continue timing, return elapsed seconds of most recent timer
-- `alarm(h, m, s)` set an alarm timer
+- `@async alarm(h, m, s)` set an alarm timer that goes off in `h` hours, `m` minutes, `s` seconds
+- `alarmlist()` see alarms
 
 `laptimer()` and `peektimer()` functions show your current timing activity without stopping any active timers.
 
@@ -94,6 +95,37 @@ julia> @async alarm(now() + Dates.Minute(1) + Dates.Second(30))
 julia> @async alarm(now() + Dates.Minute(0) + Dates.Second(5),
            action = () -> run(`say "wake up"`)) # MacOS speech command
 ```
+
+- print lots of text when the alarm fires:
+
+```julia
+@async alarm(0, 0, 10, alarmname="Wham!", action=() -> println("wake me up, before you go! " ^ 100))
+```
+
+- continuously monitor something every minute. For exaample, say you were using JuliaCon.jl to monitor what was currently happening in JuliaCon:
+
+```julia
+using JuliaCon, TickTock, Dates
+JuliaCon.debugmode(true) # if JuliaCon isn't really running 
+jca() = begin
+            print("\033[2J") # clear the console
+            println(now())
+            JuliaCon.now()  
+            @async alarm(0, 0, 20, alarmname="What's happening now in JuliaCon!", 
+                action=() -> jca())
+        end
+jca()
+```
+
+(How do you stop this though? No idea...)
+
+- on MacOS you can have speech:
+
+```julia
+@async alarm(0, 0, 5, action = () -> run(`say "Your Earl Grey is ready; sir"`), alarmname="tea's up") 
+```
+
+TODO: Add Linux and Windows speech commands...
 
 - check alarms
 

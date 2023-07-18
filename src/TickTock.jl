@@ -8,7 +8,7 @@ This module provides `tick()`, `tock()`, and `tok()` functions.
 - `peektimers()   continue counting, show and return elapsed seconds so far
 - `laptimer()     continue counting, show elapsed time so far in canonical form
 - `alarm(h, m, s) set an alarm in h/m/s from now
-- `alarm(dt)      set an alarm for `dt`
+- `alarm(dt)      set an alarm for the date and time `dt`
 - `alarmlist()    list alarms
 
 Don't use these for timing code execution! Julia provides
@@ -181,6 +181,9 @@ timers, and continue counting.
 """
 laptimer() = showtimes(canonical=true)
 
+
+## alarums
+
 """
     alarm(hours, minutes, seconds;
         action = () -> @info("TickTock: time's up"))
@@ -188,26 +191,33 @@ laptimer() = showtimes(canonical=true)
 Set an alarm, with the option of providing a anonymous
 function that executes when alarm fires.
 
-```
-using Dates
+!!! warning
 
+    Use @async to avoid tying up your terminal!
+
+```
 @async alarm(0, 5, 0, action = ()-> println("TickTock.jl: 5 minutes is up!"))
 
-@async alarm(0, 0, 5, action = () -> run(`say "your alarm is ringing, sir"`), alarmname="tea's up") # uses macOS speech
+@async alarm(0, 0, 5, action = () -> run(`say "Your Earl Grey is ready; sir"`), alarmname="tea's up") # uses macOS speech
 ```
 """
 function alarm(hours, minutes, seconds;
         action=() -> @info("TickTock: alarm"),
         alarmname="TickTock alarm")
-    tick();
+    atime = DateTime(now() + Dates.Hour(hours) + Dates.Minute(minutes) + Dates.Second(seconds))
     t = now()
+    if atime < t
+        @info "that time has already passed"
+        return false
+    end
+    tick()
     push!(TickTock.alarm_list, (
         "$(lpad(hour(t), 2, '0')):$(lpad(minute(t), 2, '0')):$(lpad(second(t), 2, '0'))",
         "$(lpad(hours, 2, '0')):$(lpad(minutes, 2, '0')):$(lpad(seconds, 2, '0'))",
         alarmname))
     while true
         sleep(1)
-        if peektimer() > hours * 60 * 60 + minutes * 60 + seconds
+        if now() >= atime
             @info alarmname
             action()
             tock()
@@ -243,6 +253,10 @@ function alarm(dt::DateTime;
         alarmname = "TickTock alarm")
     p = Dates.Period(dt - now())
     secs = round(p, Dates.Second).value
+    if secs < 0
+        @info "that time has already passed"
+        return false
+    end 
     m, s = divrem(secs, 60)
     h, m = divrem(m, 60)
     alarm(h, m, s, action=action, alarmname=alarmname)
@@ -250,9 +264,13 @@ function alarm(dt::DateTime;
 end
 
 """
+    alarmnotify(subtitle="TickTock alarm")
+
+Show on-screen notification.
+
 @async alarm(now() + Dates.Second(5), action = () ->  TickTock.alarmnotify("time's up"))
 
-MacOS only at the moment.
+TODO Add Linux and Windows - MacOS only at the moment.
 """
 function alarmnotify(subtitle="TickTock alarm")
     !Sys.isapple() && exit()
