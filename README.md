@@ -102,22 +102,20 @@ julia> @async alarm(now() + Dates.Minute(0) + Dates.Second(5),
 @async alarm(0, 0, 10, alarmname="Wham!", action=() -> println("wake me up, before you go! " ^ 100))
 ```
 
-- continuously monitor something every minute. For exaample, say you were using JuliaCon.jl to monitor what was currently happening in JuliaCon:
+- continuously monitor something. For exaample, say you were using JuliaCon.jl to monitor what was currently happening in JuliaCon, say every 30 seconds:
 
 ```julia
 using JuliaCon, TickTock, Dates
 JuliaCon.debugmode(true) # if JuliaCon isn't really running 
 jca() = begin
             print("\033[2J") # clear the console
-            println(now())
+            println(Dates.now())
             JuliaCon.now()  
-            @async alarm(0, 0, 20, alarmname="What's happening now in JuliaCon!", 
+            @async alarm(0, 0, 30, alarmname="What's happening now in JuliaCon!", 
                 action=() -> jca())
         end
 jca()
 ```
-
-(How do you stop this though? No idea...)
 
 - on MacOS you can have speech:
 
